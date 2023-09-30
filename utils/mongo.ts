@@ -13,6 +13,7 @@ export const getMongoDBUri = (): string => {
 };
 
 export const getDBClient = (): MongoClient => {
+  console.time();
   const uri = getMongoDBUri();
   console.log('get DB clietn', uri);
 
