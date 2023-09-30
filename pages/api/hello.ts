@@ -5,8 +5,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    console.log('run handler 0')
     const client = getDBClient();
+    console.log('run handler 1')
     await client.connect();
+    console.log('run handler 2')
 
     const database = process.env.DB_DATABASE_NAME;
     console.log('db database', database);
