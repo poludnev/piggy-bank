@@ -1,9 +1,11 @@
-import { Header } from '..';
+import { Header, Navigation } from '..';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Header />
+      <Header>
+        <Navigation />
+      </Header>
       <main>{children}</main>
     </div>
   );
