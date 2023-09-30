@@ -21,6 +21,6 @@ export const getDBClient = (): MongoClient => {
   console.log('getDBClient, db database', database);
   console.log('mongoDb uri', uri);
   const mongoClient = new MongoClient(uri);
-  console.log('new client', mongoClient);
+  // console.log('new client', mongoClient);
   return mongoClient;
 };
