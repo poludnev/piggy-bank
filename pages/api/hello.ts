@@ -9,6 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await client.connect();
 
     const database = process.env.DB_DATABASE_NAME;
+    console.log('db database', database);
     const db = client.db(database);
     const collection = db.collection('test-collection');
     const results = await collection.find().toArray();
