@@ -1,0 +1,96 @@
+.section {
+  background-color: white;
+  width: 30rem;
+  font-size: 2rem;
+
+  .h3 {
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+
+  .error {
+    color: red;
+    text-align: center;
+  }
+
+  .relogin {
+    background-color: white;
+    min-height: 100%;
+
+    .afterSignUp {
+      padding: 2rem 0;
+      .button {
+        display: block;
+        width: 100%;
+        background-color: inherit;
+        border: none;
+        font: inherit;
+        font-size: 3rem;
+        padding: 1rem 2rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .form {
+    padding: 1rem;
+
+    .inputGroup {
+      .label,
+      .input {
+        display: block;
+        padding: 1rem;
+      }
+      .input {
+        width: 100%;
+        font-family: inherit;
+        font-size: inherit;
+        border: none;
+        border-bottom: 1px dashed black;
+        &::placeholder {
+          color: lightgray;
+        }
+
+        &:focus {
+          outline: none;
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+
+    .controls {
+      padding: 2rem 0 1rem;
+      .submitButton {
+        width: 100%;
+        background-color: white;
+        border: 1px solid black;
+        padding: 1rem;
+      }
+    }
+  }
+
+  .switchIsLogIn {
+    display: flex;
+
+    padding: 1rem;
+    .button {
+      flex: 1;
+      font-family: inherit;
+      font-size: 1.6rem;
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      color: gray;
+      border-bottom: 1px dashed lightgray;
+      &.selected {
+        color: black;
+        border: none;
+        border-bottom: 1px dashed transparent;
+      }
+      &:disabled {
+        cursor: not-allowed;
+        color: rgb(204, 204, 204);
+      }
+    }
+  }
+}

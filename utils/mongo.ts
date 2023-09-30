@@ -1,3 +1,4 @@
+import { IUser } from '@/types/users';
 import { MongoClient, MongoServerError } from 'mongodb';
 
 export const getMongoDBUri = (): string => {
@@ -23,4 +24,21 @@ export const getDBClient = (): MongoClient => {
   const mongoClient = new MongoClient(uri);
   // console.log('new client', mongoClient);
   return mongoClient;
+};
+
+export const requestUserByEmail = async (email: string): Promise<IUser | null> => {
+  const client = getDBClient();
+  try {
+    const database = process.env.DB_DATABASE_NAME;
+    const db = client.db(database);
+    const collection = db.collection<IUser>('users');
+    const user = await collection.findOne({ email });
+    if (!user) throw new Error('requestUserByEmail error: unknown user');
+    return { ...user, id: user?._id.toString() };
+  } catch (error) {
+    console.log('requestUserByEmail error', error);
+    return null;
+  } finally {
+    client.close();
+  }
 };

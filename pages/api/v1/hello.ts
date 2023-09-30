@@ -1,16 +1,17 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { getDBClient } from '@/utils/mongo';
-import { MongoClient, MongoServerError, ServerApiVersion } from 'mongodb';
+import { getToken } from 'next-auth/jwt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const secret = process.env.NEXTAUTH_SECRET;
+  const token = await getToken({ req, secret });
+  if (!token) {
+    res.status(403).send('forbidden');
+    return;
+  }
+  const client = getDBClient();
   try {
-    console.log('run handler 0');
-    const client = getDBClient();
-    console.log('run handler 1');
     await client.connect();
-    console.log('run handler 2');
-
     const database = process.env.DB_DATABASE_NAME;
     console.log('db database', database);
     const db = client.db(database);
@@ -19,9 +20,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('hello heandler resulst', results);
 
     res.status(200).json(results);
-    client.close();
   } catch (error) {
     console.log('hello heandler error', error);
     res.status(500).json(error);
+  } finally {
+    client.close();
   }
 }

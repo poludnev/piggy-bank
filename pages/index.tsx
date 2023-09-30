@@ -1,12 +1,12 @@
-import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import type { GetStaticProps } from 'next';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import type { GetStaticProps } from 'next';
 
 import styles from '@/styles/Home.module.scss';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 
 export const getStaticProps = (async (contex) => {
   const { locale } = contex as { locale: string };
@@ -19,22 +19,14 @@ export const getStaticProps = (async (contex) => {
 
 export default function Home() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isAuth, setIsAuth] = useState(true);
-
-  const signIn = () => {};
-  const signOut = () => {};
+  const { data, status } = useSession();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    fetch('/api/hello')
-      .then((res) => res.text())
-      .then((data) => {
-        console.log('fetch data:'), console.log(data);
-      })
-      .catch((error) => {
-        console.log('fecth error:', error);
-      });
-  }, []);
+    setIsLoading(status === 'loading');
+    setIsAuth(!!data);
+  }, [data, status]);
 
   return (
     <>
