@@ -40,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const collection = db.collection('test-collection');
     const results = await collection.find().toArray();
     // console.log('hello heandler resulst', results);
-    run().catch(console.dir);
+    // run().catch(console.dir);
 
     res.status(200).json(results);
     client.close();
