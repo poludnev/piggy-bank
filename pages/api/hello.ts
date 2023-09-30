@@ -29,7 +29,7 @@ async function run() {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     // console.log('run handler 0');
-    const client = getDBClient();
+    // const client = getDBClient();
     // console.log('run handler 1');
     await client.connect();
     // console.log('run handler 2');
@@ -46,6 +46,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     client.close();
   } catch (error) {
     console.log('hello heandler error', error);
-    res.status(500).send('server interal error');
+    res.status(500).json(error);
   }
 }
