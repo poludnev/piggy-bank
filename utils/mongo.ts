@@ -14,6 +14,10 @@ export const getMongoDBUri = (): string => {
 
 export const getDBClient = (): MongoClient => {
   const uri = getMongoDBUri();
+  console.log('get DB clietn', uri);
+
+  const database = process.env.DB_DATABASE_NAME;
+  console.log('getDBClient, db database', database);
   console.log('mongoDb uri', uri);
   const mongoClient = new MongoClient(uri);
   return mongoClient;

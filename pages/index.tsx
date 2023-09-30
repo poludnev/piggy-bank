@@ -20,11 +20,17 @@ export default function Home() {
   const { t } = useTranslation(['common']);
 
   useEffect(() => {
+    console.log('index useEffect');
+    console.log('run fetch');
     fetch('/api/hello')
-      .then((res) => res.json())
-      .then(console.log)
-      .catch(console.error);
-  });
+      .then((res) => res.text())
+      .then((data) => {
+        console.log('fetch data:'), console.log(data);
+      })
+      .catch((error) => {
+        console.log('fecth error:', error);
+      });
+  }, []);
 
   return (
     <>
