@@ -62,7 +62,6 @@ export const ServiceDataDispatchContext = createContext<Dispatch<TDataReducerAct
 export const useServiceDataDispatchContext = () => useContext(ServiceDataDispatchContext);
 
 export const ServiceDataContextProvider = ({ children }: { children: ReactNode }) => {
-  // console.count('render data context');
   const [state, dispatch] = useReducer(serviceDataStateReducer, serviveDataContextDefaultState);
   const { status } = useSession();
 
@@ -85,8 +84,6 @@ export const ServiceDataContextProvider = ({ children }: { children: ReactNode }
       subCategories,
     ]);
 
-    console.log(fetchedData);
-
     dispatch(createSetTransactionTypesAction(fetchedData[0]));
     dispatch(createSetCurrenciesAction(fetchedData[1]));
     dispatch(createSetPaymentSourcesAction(fetchedData[2]));
@@ -98,7 +95,6 @@ export const ServiceDataContextProvider = ({ children }: { children: ReactNode }
 
   useEffect(() => {
     if (status === 'authenticated') {
-      console.log('status');
       dataInitialiser();
     }
   }, [status, dataInitialiser]);

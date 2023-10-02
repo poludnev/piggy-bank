@@ -31,6 +31,7 @@ import { TransactionDescriptionInput } from './components/TransactionDescription
 import { createNewTransaction } from '@/utils/transaction';
 import { addTransaction } from '@/utils/adders';
 import { useSession } from 'next-auth/react';
+import { useTransactionsContext } from '@/contexts/TransactionsContext/TransactionsContext';
 export const TransactionForm = (): JSX.Element => {
   const {
     transactionTypes,
@@ -41,6 +42,7 @@ export const TransactionForm = (): JSX.Element => {
     categories,
     subCategories,
   } = useServiceDataContext();
+  const { updateTransactions } = useTransactionsContext();
 
   const { data } = useSession();
 
@@ -82,6 +84,7 @@ export const TransactionForm = (): JSX.Element => {
 
       setFormStatus('succeed');
       setFormStatusMessage(`Successfully sent transaction with id: ${insertedId}`);
+      updateTransactions();
     } catch (error) {
       setFormStatus('failed');
       setFormStatusMessage('failed sending form');

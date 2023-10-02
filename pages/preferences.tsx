@@ -353,7 +353,7 @@ export default function PreferencesPage() {
   const categoryInputId = useId();
   const subCategoryInputId = useId();
   return (
-    <div className={styles.container}>
+    <main className={styles.main}>
       <div className={styles.preferenceControlElement}>
         <h3 className={styles.h3}>Transaction Types</h3>
         <details className={styles.details}>
@@ -631,6 +631,6 @@ export default function PreferencesPage() {
           </button>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
