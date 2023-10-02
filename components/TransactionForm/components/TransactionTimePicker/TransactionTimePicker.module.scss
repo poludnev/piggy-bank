@@ -1,0 +1,36 @@
+.container {
+  padding: 0.5rem;
+  background-color: white;
+  .label {
+    display: block;
+    width: 100%;
+
+    .h3 {
+      font-size: 2rem;
+      padding: 0 0.5rem;
+
+      margin-bottom: 0.5rem;
+    }
+  }
+  .input {
+    appearance: none;
+    width: 100%;
+    font-size: 1.6rem;
+    border: none;
+    height: 3.5rem;
+    text-align: start;
+
+    background-color: white;
+
+    color: black;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding: 0.5rem;
+    font-family: monospace;
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid gray;
+    }
+  }
+}

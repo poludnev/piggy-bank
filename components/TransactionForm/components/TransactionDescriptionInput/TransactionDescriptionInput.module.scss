@@ -1,0 +1,39 @@
+.container {
+  background-color: white;
+
+  .label {
+    background-color: white;
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    .h3 {
+      font-size: 2rem;
+      padding: 0.5rem;
+
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      padding: 0 0.5rem;
+
+      margin-bottom: 0.5rem;
+    }
+    .input {
+      width: 100%;
+      min-height: 2.5rem;
+      border: none;
+      border-bottom: 1px solid lightgrey;
+      padding: 0.5rem;
+      font-family: monospace;
+      font-size: 2rem;
+
+      &::placeholder {
+        font-size: 1.6rem;
+        color: lightgray;
+      }
+
+      &:focus {
+        outline: none;
+        border-bottom: 1px solid grey;
+      }
+    }
+  }
+}

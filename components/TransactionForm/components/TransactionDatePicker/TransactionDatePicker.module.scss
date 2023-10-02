@@ -1,0 +1,45 @@
+.container {
+  padding: 0.5rem;
+  background-color: white;
+  max-width: 15rem;
+  .label {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    .h3 {
+      font-size: 2rem;
+      padding: 0 0.5rem;
+
+      margin-bottom: 0.5rem;
+    }
+  }
+  .input {
+    appearance: none;
+    width: 100%;
+    font-size: 1.6rem;
+    border: none;
+    height: 3.5rem;
+    text-align: start;
+
+    background-color: white;
+
+    color: black;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    padding: 0.5rem;
+    font-family: monospace;
+
+    display: flex;
+    justify-content: flex-start;
+
+    @media screen and (max-width: 425px) {
+      width: 20rem;
+    }
+
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid gray;
+    }
+  }
+}
