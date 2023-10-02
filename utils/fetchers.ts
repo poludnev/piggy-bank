@@ -5,6 +5,7 @@ import {
   API_PAYERS_URL,
   API_PAYMENT_SOURCES_URL,
   API_SUB_CATEGORIES_URL,
+  API_TRANSACTIONS_URL,
   API_TRANSACTION_TYPES_URL,
 } from '@/libs/constants';
 import {
@@ -14,6 +15,7 @@ import {
   IPayer,
   IPaymentSource,
   ISubCategory,
+  ITransaction,
   ITransactionType,
 } from '@/types/transactions';
 
@@ -46,3 +48,5 @@ export const fetchPayers = () => fetchDataApiRequest<IPayer>(API_PAYERS_URL);
 export const fetchCategories = () => fetchDataApiRequest<ICategory>(API_CATEGORIES_URL);
 
 export const fetchSubCategories = () => fetchDataApiRequest<ISubCategory>(API_SUB_CATEGORIES_URL);
+
+export const fetchTransactions = () => fetchDataApiRequest<ITransaction>(API_TRANSACTIONS_URL);

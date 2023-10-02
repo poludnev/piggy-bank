@@ -5,6 +5,7 @@ import {
   API_PAYERS_URL,
   API_PAYMENT_SOURCES_URL,
   API_SUB_CATEGORIES_URL,
+  API_TRANSACTIONS_URL,
   API_TRANSACTION_TYPES_URL,
 } from '@/libs/constants';
 import { IDBInsertResult } from '@/types/api';
@@ -15,6 +16,7 @@ import {
   TNewPayer,
   TNewPaymentSource,
   TNewSubCategory,
+  TNewTransaction,
   TNewTransactionType,
 } from '@/types/transactions';
 
@@ -53,3 +55,6 @@ export const addCategory = async (newCategory: TNewCategory) =>
   addDataApiRequest(API_CATEGORIES_URL, newCategory);
 export const addSubCategory = async (newSubCategory: TNewSubCategory) =>
   addDataApiRequest(API_SUB_CATEGORIES_URL, newSubCategory);
+
+export const addTransaction = async (newTransacton: TNewTransaction) =>
+  addDataApiRequest(API_TRANSACTIONS_URL, newTransacton);

@@ -1,3 +1,4 @@
+import { TransactionForm } from '@/components';
 import { hasToken } from '@/utils/auth';
 import { GetServerSideProps } from 'next';
 
@@ -16,5 +17,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return { props: {} };
 };
 export default function TransactionPage() {
-  return <div>Transaction</div>;
+  return (
+    <main>
+      <TransactionForm />
+    </main>
+  );
 }

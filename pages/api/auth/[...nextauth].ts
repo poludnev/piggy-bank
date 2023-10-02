@@ -28,7 +28,7 @@ export const nextAuthOptions: AuthOptions = {
 
         if (!isValidPassord) throw new Error('wrong user password');
 
-        return { id: user.id, email: user.email };
+        return { email: user.email, id: user.id };
       },
     }),
   ],
@@ -37,7 +37,7 @@ export const nextAuthOptions: AuthOptions = {
       return data.token;
     },
     session: (data) => {
-      return data.session;
+      return { ...data.session, user: { ...data.session.user, name: data.token.sub } };
     },
   },
   pages: {

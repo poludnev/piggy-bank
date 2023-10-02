@@ -47,3 +47,20 @@ export interface ISubCategory {
 }
 
 export type TNewSubCategory = WithoutId<ISubCategory>;
+
+export interface ITransaction {
+  id: string;
+  userId: string;
+  typeId: ITransactionType['id'];
+  date: Date;
+  amount: number;
+  currencyId: ICurrency['id'];
+  paymentSourceId: IPaymentSource['id'];
+  payeeId: IPayee['id'];
+  payerId: IPayer['id'];
+  categoryId: ICategory['id'];
+  subcategoryId: ISubCategory['id'] | null;
+  description: string | null;
+}
+
+export type TNewTransaction = WithoutId<ITransaction>;
