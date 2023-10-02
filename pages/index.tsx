@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import type { GetStaticProps } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -20,22 +18,15 @@ export const getStaticProps = (async (contex) => {
 export default function Home() {
   const router = useRouter();
   const { data, status } = useSession();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(status === 'loading');
-    setIsAuth(!!data);
-  }, [data, status]);
 
   return (
     <>
       <main className={`${styles.main}`}>
-        {isLoading ? (
+        {status === 'loading' ? (
           <div className={styles.loading}>Loading...</div>
         ) : (
           <>
-            {isAuth && (
+            {!!data && (
               <div className={styles.authMenu}>
                 <div className={styles.authMenuElement}>
                   <button className={styles.button} onClick={() => router.replace('/transaction')}>
@@ -62,7 +53,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-            {!isAuth && (
+            {!data && (
               <div className={styles.notAuthMenu}>
                 <div className={styles.notAuthMenuElement}>
                   <button className={styles.button} onClick={() => signIn()}>
