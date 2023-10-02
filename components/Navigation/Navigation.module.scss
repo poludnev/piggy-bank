@@ -1,0 +1,27 @@
+.container {
+  background-color: white;
+  font-size: 2rem;
+  font-family: monospace;
+  padding: 1rem;
+  border-bottom: 1px dashed black;
+  @media screen and (max-width: 425px) {
+    justify-content: space-between;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 2rem;
+    @media screen and (max-width: 425px) {
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    li {
+      display: inline-block;
+      padding: 0.5rem;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+.form {
+  background-color: white;
+  font-family: monospace;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px dashed black;
+
+  @media screen and (max-width: 425px) {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .h2 {
+    display: flex;
+    flex: 1 0 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    grid-column: 1 / span 8;
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border-bottom: 1px dashed grey;
+    grid-column: 1 / -1;
+  }
+
+  .messageContainer {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    grid-column: 1/ 9;
+    padding: 0.5rem;
+    font-size: 1.6rem;
+
+    border-top: 1px dashed grey;
+    display: flex;
+    width: 100%;
+
+    @media screen and (max-width: 425px) {
+      display: block;
+      position: relative;
+      border-top: none;
+      border-bottom: 1px dashed grey;
+    }
+  }
+
+  .inputGroup {
+    background-color: white;
+    grid-column: 1 / -1;
+
+    &.transactionType {
+      grid-column: 9 / -1;
+      @media screen and (max-width: 425px) {
+        border-bottom: 1px dashed grey;
+      }
+    }
+    &.datePicker {
+      grid-column: 1 / span 7;
+    }
+
+    &.timePicker {
+      grid-column: 8 / span 13;
+    }
+
+    &.amount {
+      grid-column: 4 / span 5;
+    }
+
+    &.currency {
+      grid-column: 9 / span 4;
+    }
+    &.paymentSource {
+      grid-column: 1 / span 3;
+    }
+    &.payee {
+      grid-column: 1 / span 6;
+    }
+    &.payer {
+      grid-column: 7 / span 6;
+    }
+
+    &.category {
+      flex: 1 1;
+      grid-column: 1 / span 6;
+    }
+
+    &.subcategory {
+      flex: 1 1;
+      grid-column: 7 / span 6;
+    }
+    &.description {
+      flex: 1 1;
+    }
+  }
+  .controlGroup {
+    grid-column: 1 / -1;
+    display: flex;
+
+    .submit,
+    .clear {
+      border: none;
+      padding: 2rem 1rem;
+      font-size: 2rem;
+      font-family: monospace;
+      cursor: pointer;
+
+      &:disabled {
+        background-color: rgb(200, 200, 200);
+        color: white;
+        cursor: not-allowed;
+      }
+    }
+
+    .submit {
+      background-color: var(--primary-blue);
+      color: white;
+      flex: 1 1;
+    }
+    .clear {
+      background-color: rgb(214, 214, 214);
+      color: red;
+
+      flex: 1 1;
+    }
+  }
+}
