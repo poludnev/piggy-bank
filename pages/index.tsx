@@ -1,19 +1,7 @@
-import type { GetStaticProps } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-
 import styles from '@/styles/Home.module.scss';
-
-export const getStaticProps = (async (contex) => {
-  const { locale } = contex as { locale: string };
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common'])),
-    },
-  };
-}) satisfies GetStaticProps;
 
 export default function Home() {
   const router = useRouter();
