@@ -14,4 +14,4 @@ export const API_PAYEES_URL = '/api/v1/payee';
 export const API_PAYMENT_SOURCES_URL = '/api/v1/payment-source';
 export const API_CURRENCIES_URL = '/api/v1/currency';
 export const API_TRANSACTION_TYPES_URL = '/api/v1/transaction-type';
-export const API_TRANSACTIONS_URL = 'api/v1/transactions';
+export const API_TRANSACTIONS_URL = '/api/v1/transactions';

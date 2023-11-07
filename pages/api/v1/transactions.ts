@@ -1,7 +1,11 @@
 import { DB_TRANSACTIONS_COLLECTION_NAME } from '@/libs/constants';
 import { IDBInsertResult } from '@/types/api';
 import { ITransaction, TNewTransaction } from '@/types/transactions';
-import { insertOneByCollectionName, requestByCollectionName } from '@/utils/mongo';
+import {
+  insertOneByCollectionName,
+  requestByCollectionName,
+  requestTransactionsByDateInterval,
+} from '@/utils/mongo';
 import { getToken } from 'next-auth/jwt';
 import { NextApiRequest, NextApiResponse } from 'next/types';
 
@@ -32,10 +36,19 @@ export default async function transactionHandler(
       return;
     }
     if (req.method === 'GET') {
-      const subCategories: ITransaction[] = await requestByCollectionName<ITransaction>(
+      const { from, to } = req.query;
+      if (!!from && !!to) {
+        const transactions = await requestTransactionsByDateInterval(
+          new Date(from as string),
+          new Date(to as string),
+        );
+        res.status(200).json(transactions);
+        return;
+      }
+      const transactions: ITransaction[] = await requestByCollectionName<ITransaction>(
         DB_TRANSACTIONS_COLLECTION_NAME,
       );
-      res.status(200).json(subCategories);
+      res.status(200).json(transactions);
       return;
     }
     res.status(422).json(new Error('unknown request'));
