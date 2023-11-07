@@ -5,8 +5,10 @@ import '@/styles/globals.scss';
 import { SessionProvider } from 'next-auth/react';
 import { ServiceDataContextProvider } from '@/contexts';
 import { TransactionsContextProvider } from '@/contexts/TransactionsContext/TransactionsContext';
+import { rootstore } from '@/stores/root-store';
 
 function App({ Component, pageProps: { sesssion, ...pageProps } }: AppProps) {
+  rootstore.dataStore.serviceDataStore.getAllData();
   return (
     <SessionProvider session={sesssion}>
       <ServiceDataContextProvider>

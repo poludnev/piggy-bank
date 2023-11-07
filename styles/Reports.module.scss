@@ -1,0 +1,47 @@
+.groups {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.6rem;
+}
+
+.totals {
+  padding: 1rem;
+  font-size: 1.6rem;
+  font-family: monospace;
+  max-width: 20rem;
+
+  .total {
+    display: flex;
+    gap: 1rem;
+    padding: 0.5rem 0;
+
+    .sum {
+      text-align: end;
+      flex: 1 0;
+    }
+  }
+}
+.group {
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  .groupHeader {
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+
+  .transaction {
+    display: flex;
+    gap: 1rem;
+  }
+  .groupSum {
+    padding: 1rem;
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+
+    .currency {
+      text-transform: uppercase;
+    }
+  }
+}

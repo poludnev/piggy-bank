@@ -1,5 +1,5 @@
 import { IAPIPostResponce } from '@/types/api';
-import { WithoutId } from '@/types/transactions';
+import { ITransaction, WithoutId } from '@/types/transactions';
 import { IUser } from '@/types/users';
 import { MongoClient, MongoServerError } from 'mongodb';
 
@@ -61,6 +61,22 @@ export const requestByCollectionName = async <T extends { id: string }>(
   } finally {
     client.close();
   }
+};
+
+export const requestTransactionsByDateInterval = async (from: Date, to: Date) => {
+  const client = getDBClient();
+
+  const database = process.env.DB_DATABASE_NAME;
+  const db = client.db(database);
+  const collection = db.collection<ITransaction>('transactions');
+
+  //TODO: fix up types https://github.com/poludnev/piggy-bank/issues/6
+  //@ts-ignore
+  const results = await collection
+    .find({ date: { $gt: from.toISOString(), $lt: to.toISOString() } })
+    .toArray();
+
+  return results.map((result) => ({ ...result, id: result._id.toString() }));
 };
 
 export const insertOneByCollectionName = async <T extends WithoutId<T>>(

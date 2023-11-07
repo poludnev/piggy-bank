@@ -19,9 +19,14 @@ import {
   ITransactionType,
 } from '@/types/transactions';
 
-export const fetchDataApiRequest = async <T>(apiUrl: string): Promise<T[]> => {
+export const fetchDataApiRequest = async <T>(
+  apiUrl: string,
+  query?: { [id: string]: string },
+): Promise<T[]> => {
   try {
-    const response = await fetch(apiUrl);
+    const url = `${apiUrl}${query ? '?' + new URLSearchParams(query) : ''}`;
+
+    const response = await fetch(url);
     if (!response.ok) throw new Error(response.statusText);
 
     const responseResult: T[] = await response.json();
@@ -50,3 +55,9 @@ export const fetchCategories = () => fetchDataApiRequest<ICategory>(API_CATEGORI
 export const fetchSubCategories = () => fetchDataApiRequest<ISubCategory>(API_SUB_CATEGORIES_URL);
 
 export const fetchTransactions = () => fetchDataApiRequest<ITransaction>(API_TRANSACTIONS_URL);
+
+export const fetchTransactionsByPeriod = (from: Date, to: Date) =>
+  fetchDataApiRequest<ITransaction>(API_TRANSACTIONS_URL, {
+    from: from.toISOString(),
+    to: to.toISOString(),
+  });
